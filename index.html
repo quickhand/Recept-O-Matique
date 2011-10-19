@@ -4,6 +4,7 @@
   <meta charset='utf-8'>
 
   <title>quickhand/Recept-O-Matique @ GitHub</title>
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript">
 
@@ -40,12 +41,20 @@
   }
   function moreStuff() {
     var service = new google.gdata.client.GoogleService('writely', 'DocList-App-v3.0');
-    service.getFeed(scope + 'default/private/full/?v=3', handleFeed, handleError);
+    
+    $("#blam").html(service.getFeed(scope + 'default/private/full/?v=3', handleFeed, handleError));
   }
+</script>
+
+<script>
+     $(document).ready(function(){
+
+     });
 </script>
 </head>
 <body>
 <button type="button" onclick="doLogin()">Log In To Google Docs</button>
 <button type="button" onclick="moreStuff()">Do Some More Stuff</button>
+<div id="blam"></div>
 </body>
 </html>
