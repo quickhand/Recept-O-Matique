@@ -42,10 +42,11 @@
   function moreStuff() {
   
     $.get(
-    "http://docs.google.com/feeds/default/private/full/-/document",
-    {token: $_GET["token"]},
+    "https://docs.google.com/feeds/documents/private/full"
+    //"https://docs.google.com/feeds/default/private/full/-/document",
+    {},
     function(data) {
-       $("#blam").text("bla");
+       $("#blam").text(data);
     }
     );
     
