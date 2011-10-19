@@ -7,12 +7,18 @@
 <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript">
-
+  var scope = 'http://docs.google.com/feeds/';
   // Load the latest version of the Google Data JavaScript Client
   google.load('gdata', '2.x');
 
   function onGoogleDataLoad() {
     // Put your code here
+    if(google.accounts.user.checkLogin(scope))
+    {
+      $("#loginbutton").hide();
+    } else {
+      $("#loginbutton").removeAttr('disabled');
+    }
   }
 
   // Call function once the client has loaded
@@ -24,7 +30,7 @@
   //  scope = "http://docs.google.com/feeds/";
   //  var token = google.accounts.user.login(scope);
   //}
-  var scope = 'http://docs.google.com/feeds/';
+  
   function doLogin() { 
    var next = window.location // TODO add here + '&[[]SOME_EXTRA_URL_PARAMETER_OR_APP_STATE=' + VALUE;
    var url = 'https://www.google.com/accounts/AuthSubRequest?';
@@ -59,7 +65,7 @@
 </script>
 </head>
 <body>
-<button type="button" onclick="doLogin()">Log In To Google Docs</button>
+<button type="button" id="loginbutton" onclick="doLogin()" disabled="disabled">Log In To Google Docs</button>
 <button type="button" onclick="moreStuff()">Do Some More Stuff</button>
 <div id="blam"></div>
 </body>
