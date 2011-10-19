@@ -23,8 +23,8 @@
   //  scope = "http://docs.google.com/feeds/";
   //  var token = google.accounts.user.login(scope);
   //}
-  function doLogin() {
-   var scope = 'http://docs.google.com/feeds/';
+  var scope = 'http://docs.google.com/feeds/';
+  function doLogin() { 
    var next = window.location // TODO add here + '&[[]SOME_EXTRA_URL_PARAMETER_OR_APP_STATE=' + VALUE;
    var url = 'https://www.google.com/accounts/AuthSubRequest?';
    url += 'scope=' + scope;
@@ -34,14 +34,18 @@
    window.location = url;
   }
   function doLogout() {
-    scope = "http://docs.google.com/feeds/";
     if (google.accounts.user.checkLogin(scope)) {
       google.accounts.user.logout();
     }
+  }
+  function moreStuff() {
+    var service = new google.gdata.client.GoogleService('writely', 'DocList-App-v3.0');
+    service.getFeed(scope + 'default/private/full/?v=3', handleFeed, handleError);
   }
 </script>
 </head>
 <body>
 <button type="button" onclick="doLogin()">Log In To Google Docs</button>
+<button type="button" onclick="moreStuff()">Do Some More Stuff</button>
 </body>
 </html>
