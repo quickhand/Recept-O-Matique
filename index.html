@@ -19,9 +19,19 @@
 
 </script>
 <script type="text/javascript">
-  function doLogin(){
-    scope = "http://docs.google.com/feeds/";
-    var token = google.accounts.user.login(scope);
+  //function doLogin(){
+  //  scope = "http://docs.google.com/feeds/";
+  //  var token = google.accounts.user.login(scope);
+  //}
+  function doLogin() {
+   var scope = 'http://docs.google.com/feeds/';
+   var next = window.location // TODO add here + '&[[]SOME_EXTRA_URL_PARAMETER_OR_APP_STATE=' + VALUE;
+   var url = 'https://www.google.com/accounts/AuthSubRequest?';
+   url += 'scope=' + scope;
+   url += '&session=1&secure=0&';
+   url += 'next=' + escape(next);
+   // TODO add here the OpenSocial persistence API call to store application state
+   window.location = url;
   }
   function doLogout() {
     scope = "http://docs.google.com/feeds/";
